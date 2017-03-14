@@ -1,0 +1,132 @@
+\aufgabe{}{1}
+
+Sketch a simple model of a real-time system and partition it into three important parts. Name
+each cluster and the interfaces between them.
+
+\aufgabe{}{1}
+
+What is the difference between a real-time image and a real-time entity?
+
+
+\aufgabe{}{2}
+
+Hard disk drives are often advertised with very high MTBFs. Some manufacturers have
+switched to a different specification, the annual failure rate (AFR). The AFR is defined as
+that percentage of a large number of disc drives that exhibit a defect when continuously
+being run for a year.
+What is the MTBF for a hard disc drive when the observations of the last year gave an AFR
+of 0.73%, that is 0.73% of all disc drives that had been running continuously for a year
+exhibited a defect?
+
+
+\aufgabe{}{2}
+
+Is real-time computing equivalent to fast computing? What is the main goal in the design of
+real-time computing systems? Please discuss briefly.
+
+
+\aufgabe{}{2}
+
+ The start of an injection in a modern combustion engine must be controlled to better than $1\deg$,
+to adhere to environmental standards. The idle motor speed of an engine is 800 rpm, the
+maximum rate is 4500 rpm. The maximum change in motor speed in case of a load change
+is 1500 rpm/sec.
+a) Compute the maximum temporal accuracy for the start of the injection.
+b) Compute for a one-cylinder four cycle engine at constant rpm the minimum time that is
+available for the computation of the injection time. A four cycle engine needs to inject
+only every other full crankshaft turn. Assume that there are no other processes running
+on the computer calculating the injection time.
+c) When the injection time is calculated early, it can become imprecise due to a change in
+rpm during this time. Compute how far in advance the injection time can be calculated
+without violating the $1\deg$ limit, assuming a maximum motor speed change. Assume for
+your calculation that the computation doesn’t take any time at all.
+
+
+\aufgabe{}{4}
+
+Explain the three different types of orders with regard to alarms in a distributed real-time
+system. Which of the orders implies another?
+
+
+\pagebreak
+\headheight = 78pt
+
+\aufgabe{}{10}
+
+How can a sparse time base help to avoid agreement protocols?
+
+
+\aufgabe{}{3}
+
+Assume you have node clocks running at a frequency of 100 MHz. What precision can you
+achieve when measuring a time interval, where the start event and the end event can origin
+from different nodes, and the node clocks are synchronized to a global clock?
+
+\aufgabe{}{5}
+
+Given a resynchronization period of 500 msec, and a clock drift rate of $10^{-6}$ sec/sec, what
+latency jitter can be tolerated to achieve a precision of $20\mu$sec using the FTA algorithm in a
+system with 5 clocks where 1 clock could be malicious ($\mu$(5,1) = 1,5)?
+
+
+\aufgabe{}{5}
+
+Please explain the difference between a simple task (S-task) and a complex task (C-task).
+\pagebreak
+
+
+\aufgabe{}{5}
+
+ What is a history state? Please explain with an example.
+
+\aufgabe{}{5}
+
+Calculate the action delay in a distributed system with the following parameters:
+dmax=20msec, dmin=5msec,
+and a) no global time available, granularity of local time is 100 $\mu$sec
+and b) global time with granularity of 500 $\mu$sec.
+
+\pagebreak
+
+\aufgabe{}{5}
+
+When is a set of nodes replica determinate?
+
+
+\aufgabe{}{5}
+
+What is state estimation?
+
+\aufgabe{}{5}
+
+Explain the terms fault, error, an failure.
+
+\aufgabe{}{5}
+
+Given a bandwidth of 10 MBits/sec, a channel length of 200 m and a required protocol
+efficiency of 90%, what is the maximum message length in bit that can be implemented by
+the media access level of a bus system
+
+
+\aufgabe{}{5}
+
+What mechanism can lead to thrashing? How should you react in an event-triggered system
+if thrashing is observed?
+
+
+\aufgabe{}{5}
+
+How can one distinguish between a Fireworks byte and a data byte in the TTP/A protocol?
+
+\aufgabe{}{5}
+
+ Calculate the data efficiency of a TTP/A system that consists of 5 nodes where each node
+sends periodically a two byte message (user data). Assume that the intermessage gap
+between the Fireworks byte and the first data byte is 4 bitcells, and the intermessage gap
+between two successive data bytes is two bitcells. The gap between the end of one round
+and the start of the next round is 6 bitcells.
+
+\aufgabe{}{5}
+
+Explain three major problems that we encounter in interrupt-driven software.
+

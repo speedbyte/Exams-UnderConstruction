@@ -1,0 +1,35 @@
+\newif\ifloesung
+\loesungfalse
+
+\newif\ifenglisch
+\englischtrue
+
+
+\input{Befehle.tex}
+\input{master-exam-2014/PageLayout_2014.tex}
+
+% \lsg{#1} zeigt #1 an, wenn \loesungtrue
+% \lsg{#1}{#2} zeigt #1 an, wenn \loesungtrue und #2 andernfalls, dabei dürfen #1 und #2 nicht zu kompliziert sein
+% \nlsg{#1} gibt #1 an, wenn \loesungfalse
+
+% In Source Code mit listings wird für Code
+% von //+  bis //- und /*+*/ bis /*-*/ sowie
+% von //l{  bis //l} und /*l{*/ bis /*l}*/ 
+% sowie in der Zeile nach //= mit abschließendem .
+% die Textanzeige unterdrückt, wenn \loesungfalse
+
+% Pfad, wo die CPP- u. HPP-Dateien zu finden sind
+\newcommand{\Code}{Code}
+
+\begin{document}
+
+% Auf der ersten Seite den vollständigen Header nutzen
+\thispagestyle{firstpagestyle}
+
+\textbf{Note:} Use the blank space underneath the questions to write your answers. Please use the time limit provided for each question as a hint as how elaborate your answer should be.
+
+\input{master-exam-2014/Aufg1_2014.tex}
+
+
+\end{document}
+

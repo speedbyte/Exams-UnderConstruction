@@ -1,0 +1,140 @@
+%
+% page layout
+%
+% Äußerer Seitenrand = one inch + \hoffset 
+\hoffset = 0pt
+% Oberer Seitenrand = one inch + \voffset
+\voffset = -1cm
+% Abstand zwischen äußerem Seitenrand und Text
+% auf ungeraden Seiten
+\oddsidemargin = 0pt
+% Abstand zwischen äußerem Seitenrand und Text
+% auf ungeraden Seiten
+\oddsidemargin = 0pt
+% Abstand zwischen oberem Seitenrand und Header
+\topmargin = 0pt
+% Höhe des Headers der ersten Seite
+\headheight = 151pt
+% Abstand zwischen Header und Text
+\headsep = 0pt
+% Texthöhe
+\textheight = 205mm
+% Textbreite
+\textwidth = 170mm
+% Abstand vom Text zu den Marginalien
+% \marginparsep = 11pt 10 
+% Breite der Marginalien
+% \marginparwidth = 54pt
+% Abstand Text zu Unterkante Footer
+% \footskip = 30pt 
+% Papierbreite
+%\paperwidth = 597pt 
+% papierhöhe
+%\paperheight = 845pt
+
+% Einzug von Absätzen
+\parindent 0mm
+% Abstand von Absätzen
+\parskip .6\baselineskip plus 1pt
+%
+% commands
+%
+\renewcommand{\bottomfraction}{1}
+\renewcommand{\topfraction}{1}
+\renewcommand{\textfraction}{0}
+\textfloatsep1ex plus 1ex minus.5ex
+%
+% avoid date
+%
+\date{}
+%
+% to get more tolerance (mir)
+%
+\tolerance800
+\emergencystretch2em
+\doublehyphendemerits5000
+\hfuzz0pt
+\leftskip0pt minus 1pt
+\rightskip0pt minus 1pt
+
+%\setlength\parskip{.4\baselineskip plus5pt minus2pt}
+
+%
+%  neuer pagestyle
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%
+% Header
+
+% gemeinsame Infos:
+\newcommand{\halbjahr}{{\bf Summer Semester 2013}}
+\newcommand{\studiengangi}{Automotive Systems}
+\newcommand{\studiengangii}{}
+\newcommand{\studiengangiii}{}
+\newcommand{\semesteri}{ASM-SB}
+\newcommand{\semesterii}{}
+\newcommand{\semesteriii}{}
+\newcommand{\fach}{ Reliable Embedded Systems }
+\newcommand{\lecture}{{\bf Real Time System Design }}
+\newcommand{\fachnummer}{}
+\newcommand{\hilfsmittel}{closed book apart from \par 2 manually written sheets of paper DIN-A4}
+\newcommand{\dozent}{Friedrich}
+\newcommand{\dauer}{60 minutes}
+
+\newlength{\headerspaltenbreite}
+\setlength{\headerspaltenbreite}{8.5cm}
+
+% Header für die erste Seite
+\newcommand{\firstpageheader}{
+{\bfseries Hochschule Esslingen \hfill\hfill Fakulty Graduate School}\\
+\begin{small}
+{ % Änderung lokal halten
+% Platz zwischen \hline und Text einfügen
+\setlength{\extrarowheight}{1.5pt}
+\begin{tabular}{|lm{\headerspaltenbreite}|ll|}\hline
+\multicolumn{2}{|l|}{\halbjahr} & Page No.:  & \thepage\ of \anzblaetter \\\hline
+Programme:   & \studiengangi  & Semester:   & \semesteri   \\\hline
+%               & \studiengangii &             & \semesterii  \\
+%               & \studiengangiii&             & \semesteriii \\\hline
+Module:  & \fach          &             & \\
+Lecture: & \lecture       & Lecturer:     & \dozent      \\\hline
+Mode:   & \hilfsmittel   & Duration:      & \dauer       \\\hline
+Name:          &                & Student number: &          \\[3ex]\hline               
+\end{tabular}
+}
+\end{small}
+}
+% Header für erste Seite setzen
+\fancypagestyle{firstpagestyle}{
+   \fancyhf{}
+   \chead{\firstpageheader}
+   \cfoot{} %\cfoot{\thepage}
+}
+%\thispagestyle{firstpagestyle}
+
+% Header für die folgenden Seiten
+\newcommand{\nextpageheader}{
+\begin{small}
+{ % Änderung lokal halten
+% Platz zwischen \hline und Text einfügen
+\setlength{\extrarowheight}{1.5pt}
+\begin{tabular}{|lm{9.6cm}|ll|}\hline
+\multicolumn{2}{|l|}{\halbjahr} & Page No.:  & \thepage\ of \anzblaetter \\\hline
+Lecture:  & \lecture          & Semester: & \semesteri  \\\hline
+%Name:          &                & Student number: & \\[3ex]\hline               
+\end{tabular}
+}
+\linebreak
+\linebreak
+\end{small}
+}
+
+\pagestyle{fancy}
+% Header leeren
+\fancyhf{}
+\chead{\nextpageheader}
+\cfoot{} %\cfoot{\thepage}
+%\cfoot{\small\it Bitte geben Sie alle Aufgabenblätter wieder ab!}
+% kein weiterer horizontaler Strich
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\plainheadrulewidth}{0pt}

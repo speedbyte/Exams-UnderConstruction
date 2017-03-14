@@ -1,0 +1,218 @@
+\documentclass[a4paper,12pt,ngerman]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}     % Um die Zeichen korrekt zu kodieren
+\usepackage[ngerman]{babel}
+\usepackage{amssymb}  % für \Box
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{framed}
+%\usepackage{xcolor}
+\usepackage{hhline}
+\usepackage{longtable}
+\usepackage{array}     % für m{} etc. in Tabellen
+%\usepackage{booktabs}  % für \addlinespace[2ex] in Tabellen
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage{hyperref}  % für \autoref{...}
+\usepackage{lastpage}  % für thelastepage im Header
+\usepackage{paralist}  % compactenum in Unteraufgaben
+\usepackage{enumitem}  % Anpassbare Enumerates/Itemizes
+%\usepackage{pstricks}  % Tex-Graphiken exportiert von Dia
+\usepackage{tikz}    
+\usepackage{xparse}    % für neue Befehle mit variabler Anzahl von Parametern (hier \lsg)
+\usepackage{soul}      % zum "verstecken" von Lösungstext
+%\usepackage[plainpages=false, pdfpagelabels,colorlinks=true, pdfstartview=FitV, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{eurosym}   % für das Euro-Symbol
+\usepackage{verbatim}
+%\usetikzlibrary{positioning,shapes,shadows,arrows.meta,calc}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Befehle zum Ein- und Ausblenden von Lösungen
+%
+
+\ifloesung
+	\NewDocumentCommand\lsg{+m +g}{%
+		\textcolor{red}{#1}
+	}
+	\newcommand{\nlsg}[1]{}
+\else
+	\NewDocumentCommand\lsg{+m +g}{%
+		\IfNoValueF{#2}
+			{#2}
+			{}
+	}
+	\newcommand{\nlsg}[1]{#1}
+\fi
+
+% Jedes Zeichen innerhalb von \geheim{...} entfernen
+% wenn die Zeichen durch etwas anderes (z.B. ?) ersetzt
+% werden sollen dann \phantom{\the\SOUL@token} ersetzen 
+% (z.B. durch ?)
+% benötigt \usepackage{soul}
+\makeatletter
+\DeclareRobustCommand{\geheim}{%
+  \SOUL@setup
+  \def\SOUL@everytoken{%
+    \phantom{\the\SOUL@token}}\SOUL@}
+\makeatother
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Konfiguration der Codeausgabe mit listings
+%
+%\usepackage{pxfonts}  % erlaube \ttfamily in bold, geht derzeit nicht in meinem MikTex unter Windows  
+\renewcommand{\ttdefault}{pcr} % Courier font auswählen, der bold erlaubt, (Alternative zu pxfonts)
+\lstset{basicstyle=\ttfamily}
+%\lstset{keywordstyle=\bfseries} % ist Default
+% \bf hinzufügen, wenn es bold sein soll
+% gilt auch für Code im Text
+\lstset{keywordstyle=\bfseries}
+%\lstset{keywordstyle=\bfseries\ttfamily\underbar}
+%\lstset{keywordstyle=\color{blue}\ttfamily}
+\lstset{stringstyle=\it}
+%\lstset{stringstyle=\color{red}\ttfamily}
+%\lstset{commentstyle=\ttfamily\itstyle}
+%\lstset{commentstyle=\color{green}\ttfamily}
+\lstset{tabsize=4}
+\lstset{showtabs=false}
+\lstset{language=C++}
+\lstset{morekeywords={ostringstream, istringstream, stringstream, ostream}}
+%\lstset{showspaces=false, 
+%        showtabs=false, tab= , 
+%		 keywordstyle=\blue\bfseries, 
+%		 commentstyle=\it\color{greenf},%
+%        showstringspaces=false, framexleftmargin=5mm, 
+%		 frame=none, numbers=none, numberstyle=\tiny, 
+%		 stepnumber=1, numbersep=5pt,%
+%        texcl=true,escapechar=!
+%}
+% automatischen Zeilenumbruch erlauben  \lstset{breaklines=true}  
+% automatischer Zeilenumbruch nur bei Whitespace              
+\lstset{breakatwhitespace=false}
+\lstset{showstringspaces=false,
+        commentstyle=\color{black} 
+%        morecomment=[l]{//}
+}
+% Coder der Lösung in rot oder ausgeblendet
+\ifloesung
+\lstset{morecomment=[l][\color{red}]{//=},
+		morecomment=[s][\color{red}]{//+}{//-},
+		morecomment=[s][\color{red}]{//l\{}{//l\}},		
+		morecomment=[s][\color{red}]{/*l\{*/}{/*l\}*/}
+}
+\else
+% mit [is] wird der Kommentar ignoriert und nicht ausgegeben ==> Platz für Lösung einplanen
+% [il] funktioniert nicht, löscht alles Folgende
+\lstset{morecomment=[is]{//=}{.},
+	 	morecomment=[is]{//+}{//-},
+		morecomment=[is]{//l\{}{//l\}},	 	
+	 	morecomment=[is]{/*l\{*/}{/*l\}*/}
+}
+\fi
+% Umlaute in Listings zu erlauben
+\lstset{literate=      
+{Ö}{{\"O}}1       
+{Ä}{{\"A}}1
+{Ü}{{\"U}}1
+{ß}{{\ss}}2
+{ü}{{\"u}}1
+{ä}{{\"a}}1
+{ö}{{\"o}}1
+{~}{$\sim$}{1}     % hochgestellte Tilde in eine in Mitte
+                   % gestellte Tilde umwandeln
+}
+% Programmcode im Text
+\newcommand\pct[1]{\lstinline!#1!}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Konfiguration für tikz
+%
+
+%\definecolorset{rgb}{}{}%
+%{lightyellow,1,1,0.6;%
+% lightblue,0.529,0.81,1;%
+% lightred,1,0.6,0.6;%
+% greenf,0,0.5647,0%
+%}
+
+%\pgfrealjobname{pruefung}
+%\usetikzlibrary{shapes,arrows,intersections,backgrounds}
+%\usetikzlibrary{decorations.markings, decorations.pathmorphing,patterns,snakes}
+%\usetikzlibrary{circuits.ee.IEC, circuits.logic.IEC}
+%tikzstyle{ST2style} = [auto, line width=1pt, >=stealth]
+
+%\tikzstyle{input}    = [coordinate]
+%\tikzstyle{output}   = [coordinate]
+
+%\tikzstyle{blockS}   = [fill=lightyellow, draw=black, rectangle, minimum height=4ex, minimum width=3em] % Block Strecke ; normal hoch
+%\tikzstyle{blockBS}  = [style = blockS,  minimum height=6ex] % Block Strecke ; höher für Bruch
+%\tikzstyle{blockR}   = [style = blockS,  fill=cyan!20]       % Block Regler ; normal hoch
+%\tikzstyle{blockBR}  = [style = blockR, minimum height=6ex] % Block Regler ; höher für Bruch
+
+%\tikzstyle{sumS}     = [draw=black, fill=lightyellow, circle, inner sep=0pt,minimum size=3mm]  % Summationsstelle Strecke
+%\tikzstyle{sumR}     = [style = sumS, fill=cyan!20]  % Summationsstelle Regler
+
+%\tikzstyle{connectiondot} = [draw=black, fill=black, circle, inner sep=0pt,minimum size=1mm]  % Punkt zum Verbinden von Signallinien
+%\tikzstyle{connectiondotvector} = [style = connectiondot, minimum size=2mm]  % Punkt zum Verbinden von Signallinien
+
+%\tikzstyle{vectorline} = [line width=1pt, double]
+%\tikzstyle{pinstyle} = [pin edge={to-,ST2style, black}]
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\renewcommand{\bf}{\bfseries}
+
+\newcommand{\anzblaetter}{\pageref{LastPage}}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Definition des Aufgabenlayouts und -nummerierung
+%
+
+% Der Zähler aufgabe als Unterzähler von chapter
+% zählt die Aufgaben in einem Kapitel
+% Mit \aufgabe{Titel} wird eine neue Aufgabe begonnen.
+\newcounter{aufgabe}
+\setcounter{aufgabe}{0}
+\renewcommand{\theaufgabe}{\arabic{aufgabe}}
+\newenvironment{aufgabe}[2]%
+	{\refstepcounter{aufgabe}
+    \vskip 6pt plus 3pt minus 3pt
+    \ifenglisch
+      {\bf\large Question \arabic{aufgabe}: #1 \hfill (#2 Min.)}
+    \else
+      {\bf\large Aufgabe \arabic{aufgabe}: #1 \hfill (#2 Min.)}
+    \fi
+   	%\\
+   	%\vskip 3pt plus 3pt minus 3pt	
+	}%
+	{}
+% Umgebung für Liste der Unteraufgaben
+\newlist{aufgabenliste}{enumerate}{3}
+\setlist[aufgabenliste]{topsep=0pt,partopsep=0pt,itemsep=0pt,parsep=4pt}
+\setlist[aufgabenliste,1]{label=\theaufgabe.\arabic*}
+\setlist[aufgabenliste,2]{label=\alph*}
+\setlist[aufgabenliste,3]{label=\roman*}
+\newenvironment{unteraufgaben}%
+    { \begin{aufgabenliste} }%
+    { \end{aufgabenliste} }
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% Text für englische Sprache für bilinguale Klausuren hervorheben
+\newcommand{\engl}[1]{\emph{#1}}
+
+% Ein paar Variablen im Logfile ausgeben
+\newcommand{\vars}{%
+\message{****hoffset = \the\hoffset}
+\message{****voffset = \the\voffset}
+\message{****headheight = \the\headheight}
+}
+

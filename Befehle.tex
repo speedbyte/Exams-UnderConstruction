@@ -28,6 +28,8 @@
 \usepackage{eurosym}   % für das Euro-Symbol
 \usepackage{verbatim}
 %\usetikzlibrary{positioning,shapes,shadows,arrows.meta,calc}
+\usepackage{lipsum}
+\usepackage[most]{tcolorbox}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % Befehle zum Ein- und Ausblenden von Lösungen
@@ -214,5 +216,21 @@
 \message{****hoffset = \the\hoffset}
 \message{****voffset = \the\voffset}
 \message{****headheight = \the\headheight}
+}
+
+%\newdimen\remainingheight
+%\newcommand*{\calcremainingheight}{%
+%    \remainingheight\dimexpr\pagegoal-\pagetotal-\baselineskip-\parskip
+%}
+
+\newdimen\remainingheight
+\newcommand*{\calcremainingheight}{%
+    \ifdim\pagegoal=\maxdimen
+        \remainingheight\dimexpr\textheight-0.4pt\relax
+    \else
+        % edit 2: replaced -\baselineskip by -\lineskip-0.4pt
+        % edit 3: removed -\parskip
+        \remainingheight\dimexpr\pagegoal-\pagetotal-\lineskip-0.4pt-\parskip\relax
+    \fi
 }
 
